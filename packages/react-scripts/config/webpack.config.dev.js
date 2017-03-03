@@ -71,7 +71,7 @@ module.exports = {
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/bundle.js',
+    filename: paths.appBuildPrefix + '/[name].js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath
   },
@@ -144,7 +144,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]'
+          name: paths.appBuildPrefix + '/media/[name].[hash:8].[ext]'
         }
       },
       // Process JS with Babel.
@@ -201,7 +201,7 @@ module.exports = {
         test: /\.svg$/,
         loader: 'file-loader',
         options: {
-          name: 'static/media/[name].[hash:8].[ext]'
+          name: paths.appBuildPrefix + '/media/[name].[hash:8].[ext]'
         }
       }
       // ** STOP ** Are you adding a new loader?

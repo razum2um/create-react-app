@@ -72,9 +72,13 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true);
 }
 
+var appBuildName = process.env.APP_BUILD || 'build';
+var appBuildPrefix = process.env.APP_BUILD_PREFIX || 'static';
+
 // config after eject: we're in ./config/
 module.exports = {
-  appBuild: resolveApp('build'),
+  appBuild: resolveApp(appBuildName),
+  appBuildPrefix: appBuildPrefix,
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   appIndexJs: resolveApp('src/index.js'),
@@ -98,7 +102,8 @@ function resolveOwn(relativePath) {
 module.exports = {
   appPath: resolveApp('.'),
   ownPath: resolveApp('node_modules/react-scripts'),
-  appBuild: resolveApp('build'),
+  appBuild: resolveApp(appBuildName),
+  appBuildPrefix: appBuildPrefix,
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   appIndexJs: resolveApp('src/index.js'),
@@ -123,6 +128,7 @@ if (!reactScriptsLinked && __dirname.indexOf(path.join('packages', 'react-script
     appPath: resolveApp('.'),
     ownPath: resolveOwn('.'),
     appBuild: resolveOwn('../../build'),
+    appBuildPrefix: appBuildPrefix,
     appPublic: resolveOwn('template/public'),
     appHtml: resolveOwn('template/public/index.html'),
     appIndexJs: resolveOwn('template/src/index.js'),
